@@ -4,8 +4,11 @@
   </a>
 </p>
 <h1 align="center">
-  Blog Site backed with Gatsby and Chakra UI
+  Blog Site
 </h1>
+<p align="center">
+  backed with Gatsby and Chakra UI
+</p>
 
 ## 🚀 Setup
 
@@ -111,3 +114,7 @@
 5.  **Chakra UI Resources**
 
     - [Chakra UI Docs](https://chakra-ui.com/docs/getting-started)
+
+## 🚀 Deployment
+
+Push it to your Github repository and deploy to [Vercel](https://vercel.com/dashboard)
