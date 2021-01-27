@@ -16,11 +16,13 @@
   },
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^1.0.1",
+    "@chakra-ui/icons": "^1.0.3",
     "@chakra-ui/react": "^1.1.6",
+    "@chakra-ui/theme-tools": "^1.0.3",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
     "framer-motion": "^3.2.2-rc.1",
-    "gatsby": "^2.31.0",
+    "gatsby": "^2.31.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }

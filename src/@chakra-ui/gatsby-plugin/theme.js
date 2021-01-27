@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 
-const customTheme = extendTheme({
+const customLayer = {
     layerStyles: {
         base: {
             bg: "gray.50",
@@ -13,7 +13,8 @@ const customTheme = extendTheme({
             boaderColor: "orange.500",
         }
     },
-})
+}
 
+const customTheme = extendTheme(customLayer);
 
 export default customTheme;

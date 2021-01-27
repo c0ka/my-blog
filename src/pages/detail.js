@@ -2,6 +2,9 @@ import React from "react"
 import { Box, Text, Flex } from "@chakra-ui/react"
 import { chakra, forwardRef } from "@chakra-ui/react";
 
+import { AddIcon } from "@chakra-ui/icons";
+import PhotoCard from "../components/PhotoCard";
+
 // with chakra factory method
 const Menu = chakra(Box, {
     baseStyle: {
@@ -21,8 +24,12 @@ function IndexPage() {
     <Menu w={[300,600,1024]} p={4} >
       <Text fontSize="xl">Hello World</Text>
     </Menu>
-    <Card fontSize="xl" h="500">With forwardRef 方法</Card>
+    <Card fontSize="xl" h="500">
+      <AddIcon />
+      With forwardRef 方法
+    </Card>
     <Box w={800} layerStyle="selected">With layerStyle</Box>
+    <PhotoCard/>
     </>
   )
 }
