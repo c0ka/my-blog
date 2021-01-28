@@ -6,7 +6,8 @@ module.exports = {
   // 设置 Gatsby 行为
   flags: {
     PRESERVE_WEBPACK_CACHE: true,
-    QUERY_ON_DEMAND: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
   },
 
   // 站点信息
