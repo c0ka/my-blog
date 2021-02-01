@@ -47,7 +47,7 @@ const Nav = () => {
   return (
     <NavContainer borderColor={bdColor}>
       <Link to="/">
-        <HStack spacing="2">
+        <HStack spacing="4">
           <GatsbyImage
             opacity="0.85"
             _hover={{ opacity: "1" }}
