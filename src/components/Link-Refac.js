@@ -17,35 +17,44 @@ const Link = forwardRef((props, ref) => {
     href,
     hideArrow = false,
     isPartiallyActive = true,
-    ...props
+    children,
+    ...rest
   } = props
-  to = to || href
+  const dest = to || href
 
-  const isExternal = to.includes("http") || to.includes("mailto:")
-  const isHash = isHashLink(to)
-  const isStatic = to.includes("static")
+  const isExternal = dest.includes("http") || dest.includes("mailto:")
+  const isHash = isHashLink(dest)
+  const isStatic = dest.includes("static")
 
   // Must use <a> tags for anchor links
   // Otherwise <Link> functionality will navigate to homepage
   // See https://github.com/gatsbyjs/gatsby/issues/21909
   if (isHash) {
-    return <ChakraLink href={to} ref={ref} {...props} />
+    return (
+      <ChakraLink href={dest} ref={ref} {...rest}>
+        {children}
+      </ChakraLink>
+    )
   }
 
   // Links to static image assets must use <a> to avoid
   // <Link> redirection. Opens in separate window.
   if (isStatic) {
-    return <ChakraLink href={to} ref={ref} {...props} isExternal />
+    return (
+      <ChakraLink href={dest} ref={ref} {...rest} isExternal>
+        {children}
+      </ChakraLink>
+    )
   }
 
   // chakra sets "noopener noreferrer" and "_blank" as default for external link
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types
   if (isExternal) {
-    const Arrow = !hideArrow ? <ExternalLinkIcon mx="2px" /> : undefined
+    // const Arrow = !hideArrow ? <ExternalLinkIcon mx="2px" /> : undefined
     return (
-      <ChakraLink href={to} ref={ref} {...props} isExternal>
+      <ChakraLink href={dest} ref={ref} {...rest} isExternal>
         {children}
-        <Arrow />
+        !hideArrow ? <ExternalLinkIcon mx="2px" /> : null
       </ChakraLink>
     )
   }
@@ -54,11 +63,13 @@ const Link = forwardRef((props, ref) => {
   return (
     <ChakraLink
       as={GatsbyLink}
-      to={to}
+      to={dest}
       ref={ref}
-      {...props}
+      {...rest}
       partiallyActive={isPartiallyActive}
-    />
+    >
+      {children}
+    </ChakraLink>
   )
 })
 
