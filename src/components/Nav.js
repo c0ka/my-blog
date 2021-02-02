@@ -2,11 +2,11 @@ import React from "react"
 import {
   chakra,
   HStack,
-  Image,
+  IconButton,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { Flex, Box, Heading, Spacer, Button } from "@chakra-ui/react"
+import { Flex, Square, Heading, Spacer, Button } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
@@ -18,6 +18,7 @@ const NavContainer = chakra(Flex, {
   baseStyle: {
     position: "sticky",
     top: "0",
+    alignItems: "center",
     width: "100%",
     height: "4.75em",
     zIndex: "1000",
@@ -56,24 +57,23 @@ const Nav = () => {
             fixed={data.file.childImageSharp.fixed}
             alt="home logo"
           />
-          <Heading size="md">Chakra App</Heading>
+          <Heading size="md" color="purple.700">
+            Chakra App
+          </Heading>
         </HStack>
       </Link>
       <Spacer />
       <Search />
-      <Box>
-        <Box as="button" colorScheme="blue" onClick={toggleColorMode}>
-          <Icon
-            name={colorMode === "light" ? "lightTheme" : "darkTheme"}
-            w={6}
-            h={6}
-            mx={4}
-            color="blue.500"
-            _hover={{ color: "blue.700" }}
-          />
-        </Box>
-        <Button colorScheme="blue">Log in</Button>
-      </Box>
+      <IconButton
+        as="button"
+        aria-label="Color Scheme"
+        variant="ghost"
+        colorScheme="purple"
+        mx="2"
+        icon={<Icon name={colorMode} boxSize={6} />}
+        onClick={toggleColorMode}
+      />
+      <Button colorScheme="purple">Log in</Button>
     </NavContainer>
   )
 }
