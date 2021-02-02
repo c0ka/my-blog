@@ -11,6 +11,8 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
 import Link from "./Link"
+import Search from "./Search"
+import Icon from "./Icon"
 
 const NavContainer = chakra(Flex, {
   baseStyle: {
@@ -58,14 +60,19 @@ const Nav = () => {
         </HStack>
       </Link>
       <Spacer />
+      <Search />
       <Box>
-        <Button onClick={toggleColorMode}>
-          Toggle {colorMode === "light" ? "Dark" : "Light"}
-        </Button>
-        <Button colorScheme="teal" mr="4">
-          Sign Up
-        </Button>
-        <Button colorScheme="teal">Log in</Button>
+        <Box as="button" colorScheme="blue" onClick={toggleColorMode}>
+          <Icon
+            name={colorMode === "light" ? "lightTheme" : "darkTheme"}
+            w={6}
+            h={6}
+            mx={4}
+            color="blue.500"
+            _hover={{ color: "blue.700" }}
+          />
+        </Box>
+        <Button colorScheme="blue">Log in</Button>
       </Box>
     </NavContainer>
   )
