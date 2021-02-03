@@ -1,4 +1,5 @@
 import React from "react"
+import { Box, Flex, Heading, Spacer, Button } from "@chakra-ui/react"
 import {
   chakra,
   HStack,
@@ -6,13 +7,14 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react"
-import { Flex, Square, Heading, Spacer, Button } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
 import Link from "./Link"
 import Search from "./Search"
 import Icon from "./Icon"
+import NavMenu from "./NavMenu"
+import { menuSections } from "../../menu-sections"
 
 const NavContainer = chakra(Flex, {
   baseStyle: {
@@ -49,6 +51,7 @@ const Nav = () => {
 
   return (
     <NavContainer borderColor={bdColor}>
+      {/* logo */}
       <Link to="/">
         <HStack spacing="4">
           <GatsbyImage
@@ -62,6 +65,9 @@ const Nav = () => {
           </Heading>
         </HStack>
       </Link>
+      <Box display={{ base: "none", lg: "flex" }} justify="space-between">
+        <NavMenu menu={menuSections} />
+      </Box>
       <Spacer />
       <Search />
       <IconButton
