@@ -14,7 +14,7 @@ const defaultThemeContext = {
 export const ThemeContext = createContext(defaultThemeContext);
 
 // 在 ThemeContext.Provider 的基础上自定义 Provider 组件
-// 管理自身状态
+// 管理相关的 state，而不是在上层组件中管理。更好的抽象！
 export const ThemeProvider = (props) => {
   const [state, setState] = useState({
     styles: {
@@ -39,7 +39,7 @@ export const ThemeProvider = (props) => {
     )
   }
 
-// HOC 函数，为组件包装 Context 环境
+// HOC 函数，为组件包装 Context 环境后返回一个新组件
 export const withThemeContext = Component => {
   return props => {
     const ctx = useContext(ThemeContext);
@@ -63,6 +63,12 @@ const greenTheme = {
   color: "green"
 };
 
+function Header() {
+  console.log("render Header");
+  return <h1>Hello CodeSandbox</h1>;
+}
+
+// Content 组件内可以使用 Context 的数据和方法
 function Content(props) {
   const {theme, switchTheme} = props
 
@@ -74,11 +80,6 @@ function Content(props) {
       <button onClick={() => switchTheme(greenTheme)}>Green Theme</button>
     </>
   );
-}
-
-function Header() {
-  console.log("render Header");
-  return <h1>Hello CodeSandbox</h1>;
 }
 
 const WithContext = withThemeContext(Content)
