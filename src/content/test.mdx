@@ -1,1 +1,102 @@
-## for placehoding
+---
+titel: Practicing React useContext with Function Component and HOC
+___
+
+
+## Practicing React useContext with Function Component and HOC
+
+### Context.js
+```javascript
+import React, { createContext, useState, useContext } from "react";
+
+const defaultContext = {
+  theme: { color: "Teal" },
+  switchTheme: () => {},
+}
+
+export const Context = createContext(defaultContext);
+
+export const ThmProvider = (props) => {
+  const [state, setState] = useState({
+    styles: {
+      ...defaultContext,
+      switchTheme: (theme) => (
+        setState(state => ({
+          styles: { 
+            ...state.styles, 
+            theme,
+            },
+          })
+        ))
+      },
+    });
+
+    console.log("render ThemeProvider");
+
+    return (
+      <Context.Provider value={state.styles } >
+        {props.children}
+      </Context.Provider>
+    )
+  }
+
+export const withThmContext = Component => {
+  return props => {
+    const ctx = useContext(Context);
+    return (
+      <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme}/>
+    )
+  }
+}
+```
+
+### App.js
+```javascript
+import React from "react";
+import { ThmProvider, withThmContext } from "./Context";
+
+const redTheme = {
+  color: "red"
+};
+
+const greenTheme = {
+  color: "green"
+};
+
+function Content(props) {
+  const {theme, switchTheme} = props
+
+  console.log("render Content")
+  return (
+    <>
+      <h1 style={theme}>Hello world</h1>
+      <button onClick={() => switchTheme(redTheme)}>Red Theme</button>
+      <button onClick={() => switchTheme(greenTheme)}>Green Theme</button>
+    </>
+  );
+}
+
+function Header() {
+  console.log("render Header");
+  return <h1>Hello CodeSandbox</h1>;
+}
+
+const WithContext = withThmContext(Content)
+
+
+function App() {
+  console.log("render App");
+  return (
+    <ThmProvider>
+      <div className="App">
+        <Header />
+        <WithContext />
+      </div>
+    </ThmProvider>
+  );
+}
+
+export default App;
+```
+
+
