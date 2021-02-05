@@ -4,14 +4,17 @@
 ```javascript
 import React, { createContext, useState, useContext } from "react";
 
-const defaultContext = {
+const defaultThemeContext = {
   theme: { color: "Teal" },
   switchTheme: () => {},
 }
 
-export const Context = createContext(defaultContext);
+// 新建 Context
+export const ThemeContext = createContext(defaultThemeContext);
 
-export const ThmProvider = (props) => {
+// 在 ThemeContext.Provider 的基础上自定义 Provider 组件
+// 管理自身状态
+export const ThemeProvider = (props) => {
   const [state, setState] = useState({
     styles: {
       ...defaultContext,
@@ -29,15 +32,16 @@ export const ThmProvider = (props) => {
     console.log("render ThemeProvider");
 
     return (
-      <Context.Provider value={state.styles } >
+      <ThemeContext.Provider value={state.styles } >
         {props.children}
       </Context.Provider>
     )
   }
 
-export const withThmContext = Component => {
+// HOC 函数，为组件包装 Context 环境
+export const withThemeContext = Component => {
   return props => {
-    const ctx = useContext(Context);
+    const ctx = useContext(ThemeContext);
     return (
       <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme}/>
     )
@@ -48,7 +52,7 @@ export const withThmContext = Component => {
 ### App.js
 ```javascript
 import React from "react";
-import { ThmProvider, withThmContext } from "./Context";
+import { ThemeProvider, withThemeContext } from "./Context";
 
 const redTheme = {
   color: "red"
@@ -76,13 +80,13 @@ function Header() {
   return <h1>Hello CodeSandbox</h1>;
 }
 
-const WithContext = withThmContext(Content)
+const WithContext = withThemeContext(Content)
 
 
 function App() {
   console.log("render App");
   return (
-    <ThmProvider>
+    <ThemeProvider>
       <div className="App">
         <Header />
         <WithContext />
