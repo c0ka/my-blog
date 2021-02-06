@@ -1,6 +1,6 @@
 import React from "react"
 import { Link as GatsbyLink } from "gatsby"
-import { chakra, Link as ChakraLink } from "@chakra-ui/react"
+import { Link as ChakraLink } from "@chakra-ui/react"
 import { InfoOutlineIcon, ExternalLinkIcon } from "@chakra-ui/icons"
 
 const HASH_PATTERN = /^#.*/

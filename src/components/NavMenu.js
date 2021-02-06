@@ -1,10 +1,32 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
 import React from "react"
 import { ChevronDownIcon } from "@chakra-ui/icons"
+import { useStaticQuery, graphql } from "gatsby"
+
 import Link from "./Link"
 
-const NavMenu = ({ menu }) => {
-  const result = menu.map((section, idx) => {
+const NavMenu = () => {
+  const data = useStaticQuery(graphql`
+    query menuSectionsQuery {
+      site {
+        siteMetadata {
+          menu {
+            text
+            ariaLabel
+            to
+            items {
+              text
+              to
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const menuSections = data.site.siteMetadata.menu
+
+  const result = menuSections.map((section, idx) => {
     if (section.items) {
       return (
         <Menu>
