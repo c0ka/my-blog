@@ -20,6 +20,7 @@ export const ThemeProvider = (props) => {
   const [state, setState] = useState({
     styles: {
       ...defaultContext,
+
       switchTheme: (theme) =>
         setState((state) => ({
           styles: {
@@ -45,13 +46,38 @@ export const withThemeContext = (Component) => {
     const ctx = useContext(ThemeContext)
     return (
       <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme} />
+      switchTheme: (theme) => (
+        setState(state => ({
+          styles: { 
+            ...state.styles, 
+            theme,
+            },
+          })
+        ))
+      },
+    });
+
+    console.log("render ThemeProvider");
+
+    return (
+      <ThemeContext.Provider value={state.styles } >
+        {props.children}
+      </Context.Provider>
+    )
+  }
+
+// HOC 函数，为组件包装 Context 环境后返回一个新组件
+export const withThemeContext = Component => {
+  return props => {
+    const ctx = useContext(ThemeContext);
+    return (
+      <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme}/>
     )
   }
 }
 ```
 
 ### App.js
-
 ```javascript
 import React from "react"
 import { ThemeProvider, withThemeContext } from "./Context"
@@ -81,12 +107,13 @@ function Content(props) {
       <button onClick={() => switchTheme(greenTheme)}>Green Theme</button>
     </>
   )
+
 }
 
 const WithContext = withThemeContext(Content)
 
 function App() {
-  console.log("render App")
+  console.log("render App");
   return (
     <ThemeProvider>
       <div className="App">
@@ -97,5 +124,5 @@ function App() {
   )
 }
 
-export default App
+export default App;
 ```
