@@ -1,3 +1,5 @@
+const menuSections = require("./menu-sections.js")
+
 require("dotenv").config()
 
 const siteUrl = `https://mysite.com`
@@ -17,6 +19,7 @@ module.exports = {
     url: process.env.SITE_URL,
     siteUrl,
     author: `c0ka`,
+    menu: menuSections,
   },
 
   // 插件区域

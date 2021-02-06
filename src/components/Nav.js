@@ -14,7 +14,6 @@ import Link from "./Link"
 import Search from "./Search"
 import Icon from "./Icon"
 import NavMenu from "./NavMenu"
-import { menuSections } from "../../menu-sections"
 
 const NavContainer = chakra(Flex, {
   baseStyle: {
@@ -66,7 +65,7 @@ const Nav = () => {
         </HStack>
       </Link>
       <Box display={{ base: "none", lg: "flex" }} justify="space-between">
-        <NavMenu menu={menuSections} />
+        <NavMenu />
       </Box>
       <Spacer />
       <Search />

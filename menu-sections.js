@@ -1,4 +1,4 @@
-export const menuSections = [
+module.exports = [
   {
     text: "use-ethereum",
     ariaLabel: "use-ethereum-menu",

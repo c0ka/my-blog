@@ -4,8 +4,8 @@
 // Custom error handling using componentDidCatch
 // Inject additional data into pages using React Context.
 
-import React, { useState, useEffect } from "react"
-import { chakra, Container, Flex, useColorMode } from "@chakra-ui/react"
+import React from "react"
+import { Flex } from "@chakra-ui/react"
 
 // import BannerNotification from "./BannerNotification"
 // import Footer from "./Footer"
@@ -15,10 +15,10 @@ import Nav from "./Nav"
 // import SideNavMobile from "./SideNavMobile"
 
 const Layout = (props) => {
-  const path = props.path
-  const shouldShowSideNav = path.includes("/docs/")
-  const shouldShowBanner =
-    path.includes("/eth2/") && !path.includes("/eth2/deposit-contract/")
+  // const path = props.path
+  // const shouldShowSideNav = path.includes("/docs/")
+  // const shouldShowBanner =
+  //   path.includes("/eth2/") && !path.includes("/eth2/deposit-contract/")
 
   return (
     <Flex

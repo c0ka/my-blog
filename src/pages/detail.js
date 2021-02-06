@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Text, Flex, useColorMode, Button } from "@chakra-ui/react"
+import { Box, Text, Flex } from "@chakra-ui/react"
 import { chakra, forwardRef } from "@chakra-ui/react"
 import { AddIcon } from "@chakra-ui/icons"
 import PhotoCard from "../components/PhotoCard"
