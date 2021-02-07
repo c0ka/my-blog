@@ -1,0 +1,52 @@
+## JSX 解析
+JSX 仅仅只是 React.createElement(component, props, ...children) 函数的语法糖。
+
+### 使用 JSX 的语法
+
+```javascript
+function Layout({children}) {
+  return <div className="layout-component">{children}</div>
+}
+
+function Hi(props) {
+  return <div>Hi {props.name}, my buddy!</div>;
+}
+
+const App = () => {
+	return (
+  	 <Layout>
+      <div>try this</div>
+      <Hi name="julian"/>
+     </Layout>)
+}
+```
+
+### Babel 转译输出结果
+函数式组件就是普通的 js 函数，接受 props（对象） 参数。 
+props 参数在函数返回的 React 元素中使用时，也是createElement函数调用的 children参数的一部分。
+
+使用组件就是函数调用，
+props.children 是组件被调用时传入的子组件。
+
+```javascript
+function Layout({
+  children
+}) {
+  return /*#__PURE__*/React.createElement("div", {
+    className: "layout-component"
+  }, children);
+}
+
+function Hi(props) {
+  return /*#__PURE__*/React.createElement("div", null, "Hi ", props.name, ", my buddy!");
+}
+
+const App = () => {
+  return /*#__PURE__*/React.createElement(
+      Layout, 
+      null, 
+      /*#__PURE__*/React.createElement("div", null, "try this"), 
+      /*#__PURE__*/React.createElement(Hi, {name: "julian"})
+  );
+};
+```
