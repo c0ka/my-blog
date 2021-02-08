@@ -30,3 +30,16 @@ export var noop = () => {}
 export var __DEV__ = process.env.NODE_ENV !== "production"
 
 export var hasLocalStorage = typeof Storage !== "undefined"
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {}
+  var target = {}
+  var sourceKeys = Object.keys(source)
+  var key, i
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i]
+    if (excluded.indexOf(key) >= 0) continue
+    target[key] = source[key]
+  }
+  return target
+}
