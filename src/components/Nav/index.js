@@ -14,7 +14,7 @@ import Link from "../Link"
 import Search from "./Search"
 import Icon from "../Icon"
 import NavMenu from "./Menu"
-import MobileMenu from "./MobileMenu"
+import MobileDrawer from "./MobileDrawer"
 
 const NavContainer = chakra(Flex, {
   baseStyle: {
@@ -80,7 +80,7 @@ const Nav = () => {
       </Link>
       <Box display={{ base: "none", lg: "flex" }} justify="space-between">
         <NavMenu menuSections={data.site.siteMetadata.menuSections} />
-        <MobileMenu menuSections={data.site.siteMetadata.menuSections} />
+        <MobileDrawer menuSections={data.site.siteMetadata.menuSections} />
       </Box>
       <Spacer />
       <Search />

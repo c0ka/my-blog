@@ -18,9 +18,10 @@ import {
 
 import Search from "./Search"
 import Link from "../Link"
+import MobileMenu from "./Menu"
 import { HamburgerIcon } from "@chakra-ui/icons"
 
-function MobileMenu({ menuSections }) {
+function MobileDrawer({ menuSections }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
 
@@ -88,4 +89,4 @@ function MobileMenu({ menuSections }) {
   )
 }
 
-export default MobileMenu
+export default MobileDrawer
