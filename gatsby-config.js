@@ -19,7 +19,7 @@ module.exports = {
     url: process.env.SITE_URL,
     siteUrl,
     author: `c0ka`,
-    menu: menuSections,
+    menuSections,
   },
 
   // 插件区域

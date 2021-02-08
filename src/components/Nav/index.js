@@ -10,10 +10,11 @@ import {
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
-import Link from "./Link"
+import Link from "../Link"
 import Search from "./Search"
-import Icon from "./Icon"
-import NavMenu from "./NavMenu"
+import Icon from "../Icon"
+import NavMenu from "./Menu"
+import MobileMenu from "./MobileMenu"
 
 const NavContainer = chakra(Flex, {
   baseStyle: {
@@ -22,7 +23,7 @@ const NavContainer = chakra(Flex, {
     alignItems: "center",
     width: "100%",
     height: "4.75em",
-    zIndex: "1000",
+    zIndex: "35",
     padding: "1em 2em",
     display: "flex",
     boxSizing: "border-box",
@@ -42,6 +43,19 @@ const Nav = () => {
         childImageSharp {
           fixed(width: 28) {
             ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      site {
+        siteMetadata {
+          menuSections {
+            text
+            ariaLabel
+            to
+            items {
+              text
+              to
+            }
           }
         }
       }
@@ -65,7 +79,8 @@ const Nav = () => {
         </HStack>
       </Link>
       <Box display={{ base: "none", lg: "flex" }} justify="space-between">
-        <NavMenu />
+        <NavMenu menuSections={data.site.siteMetadata.menuSections} />
+        <MobileMenu menuSections={data.site.siteMetadata.menuSections} />
       </Box>
       <Spacer />
       <Search />
