@@ -17,11 +17,11 @@ const NavMenu = ({ menuSections }) => {
   const result = menuSections.map((section, idx) => {
     if (section.items) {
       return (
-        <Menu>
+        <Menu key={idx}>
           <MenuButton
             as={Button}
             variant="ghost"
-            rightIcon={<ChevronDownIcon key={idx} />}
+            rightIcon={<ChevronDownIcon />}
           >
             {section.text}
           </MenuButton>

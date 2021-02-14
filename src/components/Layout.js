@@ -11,6 +11,7 @@ import { Flex } from "@chakra-ui/react"
 // import Footer from "./Footer"
 // import Link from "./Link"
 import Nav from "./Nav"
+import { Footer } from "./Footer"
 // import SideNav from "./SideNav"
 // import SideNavMobile from "./SideNavMobile"
 
@@ -24,13 +25,14 @@ const Layout = (props) => {
     <Flex
       position="relative"
       direction="column"
-      maxW={{ lg: "1504px" }}
+      maxW={{ lg: "94rem" }}
       minH="100vh"
       mx="auto"
       my="0"
     >
       <Nav />
       {props.children}
+      <Footer />
     </Flex>
   )
 }

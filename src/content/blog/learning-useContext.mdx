@@ -1,6 +1,8 @@
-## Practicing React useContext with Function Component and HOC
+---
+title: Practicing React useContext with Function Component and HOC
+---
 
-### Context.js
+## Context.js
 
 ```javascript
 import React, { createContext, useState, useContext } from "react"
@@ -48,8 +50,8 @@ export const withThemeContext = (Component) => {
       <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme} />
       switchTheme: (theme) => (
         setState(state => ({
-          styles: { 
-            ...state.styles, 
+          styles: {
+            ...state.styles,
             theme,
             },
           })
@@ -77,7 +79,8 @@ export const withThemeContext = Component => {
 }
 ```
 
-### App.js
+## App.js
+
 ```javascript
 import React from "react"
 import { ThemeProvider, withThemeContext } from "./Context"
@@ -107,13 +110,12 @@ function Content(props) {
       <button onClick={() => switchTheme(greenTheme)}>Green Theme</button>
     </>
   )
-
 }
 
 const WithContext = withThemeContext(Content)
 
 function App() {
-  console.log("render App");
+  console.log("render App")
   return (
     <ThemeProvider>
       <div className="App">
@@ -124,5 +126,5 @@ function App() {
   )
 }
 
-export default App;
+export default App
 ```

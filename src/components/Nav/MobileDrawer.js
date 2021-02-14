@@ -10,7 +10,6 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  Text,
   List,
   ListItem,
   Heading,

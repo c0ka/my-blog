@@ -31,7 +31,7 @@ export var __DEV__ = process.env.NODE_ENV !== "production"
 
 export var hasLocalStorage = typeof Storage !== "undefined"
 
-function _objectWithoutPropertiesLoose(source, excluded) {
+export function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null) return {}
   var target = {}
   var sourceKeys = Object.keys(source)

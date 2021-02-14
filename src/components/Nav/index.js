@@ -23,6 +23,7 @@ const NavContainer = chakra(Flex, {
     alignItems: "center",
     width: "100%",
     height: "4.75em",
+    background: "gray.50",
     zIndex: "35",
     padding: "1em 2em",
     display: "flex",
@@ -31,7 +32,12 @@ const NavContainer = chakra(Flex, {
   },
 })
 
-const GatsbyImage = chakra(Img)
+const GatsbyImage = chakra(Img, {
+  baseStyle: {
+    opacity: "0.85",
+    _hover: { opacity: "1" },
+  },
+})
 
 const Nav = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -68,8 +74,6 @@ const Nav = () => {
       <Link to="/">
         <HStack spacing="4">
           <GatsbyImage
-            opacity="0.85"
-            _hover={{ opacity: "1" }}
             fixed={data.file.childImageSharp.fixed}
             alt="home logo"
           />
