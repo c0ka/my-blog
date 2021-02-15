@@ -11,7 +11,7 @@ const mdxComponents = {
   a: Link,
   code: CodeBlock,
   divider: Divider,
-  h1: (props) => <Heading as="h1" marginBottom={12} size="2xl" {...props} />,
+  h1: (props) => <Heading as="h1" mb={10} size="4xl" {...props} />,
   h2: (props) => <Heading as="h2" size="lg" {...props} />,
   p: (props) => <Text fontSize="md" my={4} {...props} />,
 }

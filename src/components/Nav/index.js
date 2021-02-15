@@ -1,12 +1,7 @@
 import React from "react"
-import { Box, Flex, Heading, Spacer, Button } from "@chakra-ui/react"
-import {
-  chakra,
-  HStack,
-  IconButton,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react"
+import { mode } from "@chakra-ui/theme-tools"
+import { Box, Flex, Spacer, Button } from "@chakra-ui/react"
+import { chakra, HStack, IconButton, useColorMode } from "@chakra-ui/react"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
@@ -22,8 +17,7 @@ const NavContainer = chakra(Flex, {
     top: "0",
     alignItems: "center",
     width: "100%",
-    height: "4.75em",
-    background: "gray.50",
+    height: "6em",
     zIndex: "35",
     padding: "1em 2em",
     display: "flex",
@@ -33,21 +27,20 @@ const NavContainer = chakra(Flex, {
 })
 
 const GatsbyImage = chakra(Img, {
-  baseStyle: {
-    opacity: "0.85",
-    _hover: { opacity: "1" },
-  },
+  // baseStyle: {
+  //   opacity: "0.85",
+  //   _hover: { opacity: "1" },
+  // },
 })
 
-const Nav = () => {
+const Nav = (props) => {
   const { colorMode, toggleColorMode } = useColorMode()
-  const bdColor = useColorModeValue("gray.100", "gray.700")
 
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "images/icon.png" }) {
+      file(relativePath: { eq: "images/icon-zyp.png" }) {
         childImageSharp {
-          fixed(width: 28) {
+          fixed(height: 64) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -69,7 +62,10 @@ const Nav = () => {
   `)
 
   return (
-    <NavContainer borderColor={bdColor}>
+    <NavContainer
+      borderColor={colorMode !== "dark" ? "gray.100" : "gray.700"}
+      bg={colorMode !== "dark" ? "white" : "gray.800"}
+    >
       {/* logo */}
       <Link to="/">
         <HStack spacing="4">
@@ -77,9 +73,9 @@ const Nav = () => {
             fixed={data.file.childImageSharp.fixed}
             alt="home logo"
           />
-          <Heading size="md" color="purple.700">
+          {/* <Heading size="md" color="purple.700">
             Chakra App
-          </Heading>
+          </Heading> */}
         </HStack>
       </Link>
       <Box display={{ base: "none", lg: "flex" }} justify="space-between">
